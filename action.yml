@@ -60,7 +60,9 @@ runs:
         sudo sysctl net/netfilter/nf_conntrack_max=131072
     - name: Setup custom host for Astarte autotest API
       shell: bash
-      run: echo "${{ inputs.astarte_host }} api.autotest.astarte-platform.org" | sudo tee -a /etc/hosts
+      run: |
+        echo "127.0.0.1 api.autotest.astarte-platform.org" | sudo tee -a /etc/hosts
+        echo "${{ inputs.astarte_host }} api2.autotest.astarte-platform.org" | sudo tee -a /etc/hosts
     - name: Setup custom host for Astarte autotest Broker
       shell: bash
       run: echo "${{ inputs.astarte_host }} broker.autotest.astarte-platform.org" | sudo tee -a /etc/hosts
